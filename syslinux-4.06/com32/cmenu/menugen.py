@@ -131,24 +131,24 @@ class Menusystem:
        return ""
 
    def set_menu(self,name,value):
-       if not self.menu.has_key(name):
-          return "Error: Unknown keyword %s" % name
-       self.menu[name] = value
-       self.menu["_updated"] = 1
-       return ""
+      if not self.menu.has_key(name):
+         return f"Error: Unknown keyword {name}"
+      self.menu[name] = value
+      self.menu["_updated"] = 1
+      return ""
 
    def set_system(self,name,value):
-       if not self.system.has_key(name):
-          return "Error: Unknown keyword %s" % name
-       if name == "skipcondn":
-          try: # is skipcondn a number?
-             a = int(value)
-          except: # it is a "-" delimited sequence
-             value = value.lower()
-             parts = [ self.shift_flags.get(x.strip(),None) for x in value.split("-") ]
-             self.system["skipcondn"] = " | ".join(filter(None, parts))
-       else:
-          self.system[name] = value
+      if not self.system.has_key(name):
+         return f"Error: Unknown keyword {name}"
+      if name == "skipcondn":
+         try: # is skipcondn a number?
+            a = int(value)
+         except: # it is a "-" delimited sequence
+            value = value.lower()
+            parts = [ self.shift_flags.get(x.strip(),None) for x in value.split("-") ]
+            self.system["skipcondn"] = " | ".join(filter(None, parts))
+      else:
+         self.system[name] = value
 
    def set(self,name,value):
        # remove quotes if given
